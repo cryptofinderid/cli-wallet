@@ -107,16 +107,21 @@ Proyek ini dirilis di bawah lisensi **MIT**. Silakan gunakan, ubah, dan distribu
 │ Network: Ethereum                                                │
 └────────────────────────────────────────────────────────┘
 
+ ────────────────────────────────────────────────────────
  Assets:
  ────────────────────────────────────────────────────────
  Ethereum                 0.1234 ETH
  USDT                    150.0000 USDT
- ────────────────────────────────────────────────────────
 
- Menu:
- [1] Kirim     [2] Batch Send   [3] Refresh
- [4] Kontrak   [5] Ganti Wallet [6] Jaringan
- [7] Hapus     [8] About        [0] Keluar
+
+
+
+ ───────────────────── Menu ──────────────────────────────
+ [1] Kirim        [4] Kontrak        [7] Hapus
+ [2] Batch Send   [5] Ganti Wallet   [8] About
+ [3] Refresh      [6] Jaringan       [0] Keluar
+ ────────────────────────────────────────────────────────
+ Pilih:
 ```
 
 ---
