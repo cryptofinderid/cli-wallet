@@ -115,11 +115,11 @@ async function switchWallet() {
   const list = utils.readList();
   const current = utils.getPrimary(list);
   const options = list.map(w => `${w.name}${w.address === current.address ? " •" : ""}`);
-  options.push("➕ Tambah Wallet");
+  options.push("+ Tambah Wallet");
 
   const pick = await ui.menu(options, "Ganti Wallet");
 
-  if (pick === "➕ Tambah Wallet") {
+  if (pick === "+ Tambah Wallet") {
     await initialMenu();
     return;
   }
@@ -147,11 +147,11 @@ async function manageContracts(wallet) {
   const tokens = list[idx].networks?.[net]?.tokens || [];
 
   const options = tokens.map(t => `${t.name} (${t.symbol})`) 
-    .concat(["➕ Tambah Kontrak"]);
+    .concat(["+ Tambah Kontrak"]);
 
   const pick = await ui.menu(options, "Kontrak ERC-20");
 
-  if (pick === "➕ Tambah Kontrak") {
+  if (pick === "+ Tambah Kontrak") {
     await addToken(wallet);
     return;
   }
@@ -342,11 +342,11 @@ async function switchNetwork(wallet) {
   const idx = list.findIndex(w => w.address === wallet.address);
   const customNets = Object.keys(wallet.networks || {});
   const allNets = ["Ethereum", ...customNets.filter(n => n !== "Ethereum")];
-  const options = [...allNets, "➕ Tambah jaringan"];
+  const options = [...allNets, "+ Tambah jaringan"];
   const currentIndex = options.indexOf(wallet.currentNetwork || "Ethereum");
   const pick = await ui.menu(options, "Pilih Jaringan", currentIndex);
 
-  if (pick === "➕ Tambah jaringan") {
+  if (pick === "+ Tambah jaringan") {
     const name = await ui.input("🌐 Nama jaringan: ");
     const symbol = await ui.input("🔣 Simbol: ");
     const rpc = await ui.input("🔗 RPC URL: ");
@@ -355,7 +355,9 @@ async function switchNetwork(wallet) {
     }
     list[idx].networks ||= {};
     list[idx].networks[name] = { rpc, symbol, tokens: [] };
+    list[idx].currentNetwork = name;
     utils.saveList(list);
+    await showWallet(list[idx]);
     return;
   }
 
